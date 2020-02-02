@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AnswerInput from './AnswerInput';
 
-const AnswerInputs = () => {
+const AnswerInputs = (props) => {
 
     const [results, setResults] = useState([
         {
@@ -13,7 +13,7 @@ const AnswerInputs = () => {
             result: false
         }]
     )
-
+    
     const handleAnswerEntered = (answer) => {
         let otherResult = results.find(x => x.id != answer.id);
 
@@ -29,6 +29,11 @@ const AnswerInputs = () => {
                 }
             ]
         );
+
+        let isPass = !results.some(x => x.result === false)
+
+        props.handleResults(isPass);
+
     }
 
     return (
